@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vôlei</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos CSS (Antigo style.css) */
+        
+        /* Importação das fontes Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap');
+
+        /* Estilos gerais do corpo da página */
+        body {
+            font-family: 'Montserrat', sans-serif; /* Fonte padrão para o corpo */
+            margin: 0;
+            padding: 0;
+            line-height: 1.7; /* Espaçamento de linha um pouco maior para leitura clássica */
+            background-color: #f8f8f8; /* Cor de fundo mais clara */
+            color: #333; /* Cor do texto padrão */
+        }
+
+        /* Estilo do cabeçalho */
+        header {
+            background-color: #0b2b40; /* Azul marinho escuro */
+            color: #fff;
+            text-align: center;
+            padding: 6rem 0; /* Mais espaçamento para o título chamar mais atenção */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+            position: relative;
+            overflow: hidden; /* Para garantir que o pseudo-elemento não vaze */
+            
+            /* --- NOVO: Decoração do cabeçalho --- */
+            background-image: url('https://images.unsplash.com/photo-1549488884-a1de9563462b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Efeito de sobreposição de cor no cabeçalho */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(11, 43, 64, 0.85); /* Camada de cor azul marinho com 85% de opacidade */
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2; /* Garante que o texto esteja acima do efeito */
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif; /* Fonte clássica e chamativa */
+            font-size: 5rem; /* Título maior */
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px; /* Mais espaçamento entre letras */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        header p {
+            font-size: 1.8rem; /* Subtítulo maior */
+            margin: 1rem 0 0;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* Estilo do contêiner principal */
+        main {
+            max-width: 1100px; /* Largura um pouco maior */
+            margin: 3rem auto; /* Mais espaçamento superior */
+            padding: 0 1.5rem;
+        }
+
+        /* Estilo das seções */
+        section {
+            background-color: #fff;
+            padding: 2.5rem; /* Mais padding */
+            margin-bottom: 3rem; /* Mais espaçamento entre seções */
+            border-radius: 10px; /* Bordas mais arredondadas */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+            transition: all 0.4s ease-in-out; /* Transição mais suave */
+        }
+
+        section:hover {
+            transform: translateY(-8px); /* Elevação sutil ao passar o mouse */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif; /* Fonte clássica para subtítulos */
+            color: #0b2b40; /* Azul marinho */
+            font-size: 2.2rem;
+            border-bottom: 2px solid #0b2b40;
+            padding-bottom: 0.8rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-align: center; /* Centralizar títulos das seções */
+        }
+
+        p.section-intro {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Estilo para as listas */
+        ul {
+            list-style-type: disc; /* Voltar para marcadores de lista padrão (clássico) */
+            padding-left: 1.5rem; /* Adicionar recuo para os marcadores */
+            margin-top: 1.5rem;
+        }
+
+        ul li {
+            background: none; /* Remover fundo dos itens da lista */
+            margin-bottom: 0.8rem;
+            padding: 0;
+            border-radius: 0;
+            line-height: 1.8;
+        }
+
+        /* Layout flexível para texto e imagem */
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 3rem; /* Espaçamento entre texto e imagem */
+        }
+
+        .content-wrapper.reverse {
+            flex-direction: row-reverse; /* Inverte a ordem em algumas seções */
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .image-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-content img, .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            filter: grayscale(100%); /* Mantém o preto e branco */
+            transition: transform 0.3s ease;
+        }
+
+        .image-content img:hover, .image-container img:hover {
+            transform: scale(1.02); /* Leve zoom ao passar o mouse */
+        }
+
+        /* Layout para a seção de fundamentos */
+        .fundamento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas um pouco maiores */
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .fundamento-grid div {
+            background-color: #fcfcfc;
+            padding: 1.8rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .fundamento-grid div:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .fundamento-grid h3 {
+            color: #0b2b40;
+            font-size: 1.4rem;
+            margin-top: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .fundamento-grid p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Estilo do rodapé */
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background-color: #222; /* Fundo mais escuro */
+            color: #eee;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Estilo responsivo */
+        @media (max-width: 900px) {
+            .content-wrapper {
+                flex-direction: column; /* Coloca imagem e texto em colunas */
+                gap: 2rem;
+            }
+
+            .content-wrapper.reverse {
+                flex-direction: column; /* Também para as seções invertidas */
+            }
+
+            header h1 {
+                font-size: 3.5rem;
+                letter-spacing: 3px;
+            }
+            
+            header p {
+                font-size: 1.4rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            main {
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .fundamento-grid {
+                grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>VÔLEI</h1>
+            <p>Bem-vindo ao universo do esporte das quadras</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="historia">
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <h2>História do Vôlei</h2>
+                    <p>O voleibol foi criado em 1895, por William G. Morgan, nos Estados Unidos. A ideia era criar um esporte coletivo com menos contato físico que o basquete. O jogo rapidamente se espalhou pelo mundo e, em 1964, passou a fazer parte dos Jogos Olímpicos.</p>
+                </div>
+                <div class="image-content">
+                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=Vôlei+Clássico" alt="Imagem em preto e branco de um jogo antigo de vôlei.">
+                </div>
+            </div>
+        </section>
+
+        <section class="regras">
+            <div class="content-wrapper reverse">
+                <div class="image-content">
+                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=Regras+do+Vôlei" alt="Imagem em preto e branco de uma bola de vôlei.">
+                </div>
+                <div class="text-content">
+                    <h2>Regras Básicas</h2>
+                    <ul>
+                        <li>Cada equipe tem 6 jogadores em quadra.</li>
+                        <li>O objetivo é fazer a bola tocar o chão da quadra adversária.</li>
+                        <li>O jogo é disputado em sets de 25 pontos (vence quem fizer 3 sets primeiro).</li>
+                        <li>Cada time pode dar até 3 toques na bola antes de enviá-la ao outro lado.</li>
+                        <li>Não é permitido segurar ou carregar a bola.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="fundamentos">
+            <h2>Fundamentos do Vôlei</h2>
+            <p class="section-intro">Dominar os fundamentos é a chave para o sucesso em quadra.</p>
+            <div class="fundamento-grid">
+                <div>
+                    <h3>Saque</h3>
+                    <p>Início da jogada, pode ser por baixo ou por cima.</p>
+                </div>
+                <div>
+                    <h3>Passe</h3>
+                    <p>Recepção da bola, geralmente de manchete.</p>
+                </div>
+                <div>
+                    <h3>Levantamento</h3>
+                    <p>Preparação para o ataque, feito normalmente pelo levantador.</p>
+                </div>
+                <div>
+                    <h3>Ataque</h3>
+                    <p>Golpe para tentar marcar o ponto, também chamado de “cortada”.</p>
+                </div>
+                <div>
+                    <h3>Bloqueio</h3>
+                    <p>Tentativa de impedir o ataque adversário na rede.</p>
+                </div>
+                <div>
+                    <h3>Defesa</h3>
+                    <p>Ação de evitar que a bola toque no chão após o ataque rival.</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="https://via.placeholder.com/800x450/000000/FFFFFF?text=Fundamentos+em+Ação" alt="Imagem em preto e branco de jogadores executando fundamentos do vôlei.">
+            </div>
+        </section>
+
+        <section class="competicoes">
+            <h2>Competições Importantes</h2>
+            <ul>
+                <li>Jogos Olímpicos</li>
+                <li>Campeonato Mundial de Vôlei</li>
+                <li>Liga das Nações</li>
+                <li>Superliga Brasileira</li>
+            </ul>
+        </section>
+        
+        <section class="brasil">
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <h2>O Brasil no Vôlei</h2>
+                    <p>O Brasil é uma das maiores potências do voleibol mundial, tanto no masculino quanto no feminino. Já conquistou diversos títulos, incluindo:</p>
+                    <ul>
+                        <li>Ouro Olímpico (masculino: 1992, 2004, 2016 | feminino: 2008, 2012)</li>
+                        <li>Múltiplos títulos Mundiais e Pan-Americanos</li>
+                        <li>Grandes nomes: Giba, Serginho, Fofão, Sheilla, Ana Moser, Wallace, Fernanda Venturini, Bruninho, entre outros.</li>
+                    </ul>
+                </div>
+                <div class="image-content">
+                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=Brasil+Campeão" alt="Foto em preto e branco de um time de vôlei brasileiro celebrando a vitória.">
+                </div>
+            </div>
+        </section>
+        
+        <section class="curiosidades">
+            <h2>Curiosidades</h2>
+            <ul>
+                <li>A bola de vôlei pesa entre 260 e 280 gramas.</li>
+                <li>A altura da rede é de 2,43m (masculino) e 2,24m (feminino).</li>
+                <li>Existe também o vôlei de praia e o vôlei sentado (paralímpico).</li>
+                <li>Em média, uma partida de vôlei dura 1h30 a 2h.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vôlei. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Código JavaScript (Antigo script.js)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Site de vôlei carregado com sucesso!");
+        });
+    </script>
+</body>
+</html>
